@@ -1,0 +1,25 @@
+import sys
+import re
+import os
+
+for file in os.listdir(os.getcwd()):
+    if file.endswith(".out"):
+        infile = open(str(file), "r")
+        lines = infile.readlines()
+        newlines = ""
+        for line in lines:
+            # if you want to change additionale things just add:
+            # line = re.sub(r"WHAT TO CHANGE", "CHANGE TO WHAT", line)
+            # This will change WHAT TO CHANGE => to "CHANGE TO WHAT"
+            line = re.sub(r"BUT000050017615", "BAT00001G017615", line)
+            line = re.sub(r"BUT000052438746", "BAT00001G438746", line)
+            line = re.sub(r"BUT000052357884", "BAT00001G357884", line)
+            line = re.sub(r"BUT000053578954", "BAT00001G578954", line)
+            line = re.sub(r"BUT000057842365", "BAT00001G842365", line)
+            line = re.sub(r"BUT000057524364", "BAT00001G524364", line)
+            newlines = newlines + line
+        infile.close()
+
+        infile = open(str(file), "w+")
+        infile.writelines(newlines)
+        infile.close()
